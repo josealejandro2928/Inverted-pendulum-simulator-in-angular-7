@@ -1,0 +1,41 @@
+<div class="Simulation-Params">
+  <div *ngIf="true">
+    <form [formGroup]="this.form" class="params-form">
+      <mat-form-field class="sim-item" appearance="outline">
+        <mat-label>ángulo inicial [deg]</mat-label>
+        <input matInput placeholder="ángulo inicial [deg]" min='-40' max='40' formControlName="init_theta" type="number"
+          #new_angle>
+      </mat-form-field>
+      <mat-form-field class="sim-item" appearance="outline">
+        <mat-label>masa del carro [Kg]</mat-label>
+        <input matInput placeholder="masa del carro [Kg]" formControlName="m_car" min='0' max='10' type="number"
+          #new_car_mass>
+      </mat-form-field>
+      <mat-form-field class="sim-item" appearance="outline">
+        <mat-label>masa del péndulo [Kg]</mat-label>
+        <input matInput placeholder="masa del péndulo [Kg]" formControlName="m_pend" min='0' max='10' type="number"
+          #new_pend_mass>
+      </mat-form-field>
+      <mat-form-field class="sim-item" color="primary" appearance="outline">
+        <mat-label>longitud del péndulo [m]</mat-label>
+        <input matInput placeholder="longitud del péndulo [m]" formControlName="L" min='0' max='2' type="number"
+          #new_pend_length>
+      </mat-form-field>
+      <mat-form-field class="sim-item" appearance="outline">
+        <mat-label>p-fricción </mat-label>
+        <input matInput placeholder="p-fricción" min='0' max='6' formControlName="friction" type="number"
+          #new_pend_friction>
+      </mat-form-field>
+      <mat-form-field class="sim-item" appearance="outline">
+        <mat-label>g-fricción</mat-label>
+        <input matInput placeholder="g-fricción" min='0' max='8' formControlName="ground_friction" type="number"
+          #new_ground_friction>
+      </mat-form-field>
+    </form>
+    <button mat-button class="sendBtn" color="primary" [disabled]="this.form.invalid"
+      (click)="sendParameters()">CAMBIAR</button>
+    <button mat-button class="defaultBtn" color="primary" (click)="sendDefault()">RESETEAR</button>
+
+  </div>
+
+</div>

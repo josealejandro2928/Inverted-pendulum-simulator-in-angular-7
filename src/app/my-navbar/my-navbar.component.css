@@ -1,0 +1,92 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+}
+
+.HideAgentBar {
+  width: 40px;
+  max-width: 40px;
+  min-width: 40px;
+  padding: 0px;
+  color: #ef5350;
+  margin-left: 31%;
+  border: 1px solid #ef5350;
+}
+
+.notHideAgentBar {
+  width: 40px;
+  max-width: 40px;
+  min-width: 40px;
+  padding: 0px;
+  color: #4caf50;
+  margin-left: 31%;
+  border: 1px solid #4caf50;
+}
+
+.sim-item {
+  margin-left: 20px;
+  font-size: 15px;
+}
+
+.set-point {
+  margin-left: 45px;
+  margin-top: 0px;
+
+}
+
+.sidenav1 {
+  width: 250px;
+  background-color: #c5cae9;
+}
+
+.headerState {
+  height: 35px !important;
+  min-height: 35px !important;
+  max-height: 35px !important;
+
+}
+
+.CanvasRow {
+  width: 100%;
+  margin-top: 10px;
+}
+
+
+.rowTable {
+  height: 35px !important;
+  min-height: 35px !important;
+  max-height: 35px !important;
+}
+
+.startBtn {
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+/* .select-agent {
+  margin-left: 200px;
+  margin-top: 2px;
+  height: 10px;
+  width: 150px;
+}
+
+.agent-parameters {
+  margin-left: 10px;
+  width: 100px;
+  height: 25px;
+} */
+
+.row-params {
+  padding: 21px 8px 0px 8px;
+  width: 100% !important;
+  border: solid 2px;
+  border-color: rgba(0, 0, 0, .42);
+}
+
+table {
+  width: 100%;
+}

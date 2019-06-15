@@ -1,0 +1,174 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav1" fixedInViewport="true" [attr.role]="(true) ? 'dialog' : 'navigation'"
+    [mode]="(false) ? 'over' : 'side'" [opened]="true">
+    <mat-toolbar color="primary">
+      <span class="mat-body-2" style="font-size:20px;margin-left:5%">Parámetros sistema</span>
+    </mat-toolbar>
+    <app-sim-prams-component (changeparams)="getSimp_params($event)">
+    </app-sim-prams-component>
+    <mat-slide-toggle class="startBtn" (click)="onstartBtn()"></mat-slide-toggle>
+    <button color="primary" [ngClass]="{HideAgentBar:this.hideAgentbar,notHideAgentBar:!this.hideAgentbar}"
+      mat-stroked-button (click)="onHideAgentBar()">
+      <mat-icon *ngIf="!this.hideAgentbar">lock_open</mat-icon>
+      <mat-icon *ngIf="this.hideAgentbar">lock</mat-icon>
+    </button>
+
+
+    <br>
+    <div *ngIf="behavior.connected;else try">
+      <label style="color:#3F51B5;margin-left: 35px;;margin-top: 10px;">API is connected</label>
+    </div>
+    <ng-template #try>
+      <label style="margin-left: 35px;margin-top: 10px;">API is not connected</label>
+    </ng-template>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <mat-toolbar class="mat-elevation-z8" color="primary">
+      <mat-toolbar-row fxLayoutAlign="start start">
+        <span style="padding-top:16px">
+          >
+        </span>
+        <span style="margin-left:10px; padding-top:16px">
+          Modelado del Péndulo Invertido
+        </span>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div fxLayout="column" style="padding: 20px 10px 20px 20px !important; overflow:hidden"
+      fxLayoutAlign="start stretch" fxFlexFill>
+      <div fxLayout="row" style="width: 100%" fxLayoutAlign="start start" fxLayoutGap="gappx">
+        <div fxLayout="column" style="width: 75%;" fxLayoutAlign="start start" fxLayoutGap="gappx">
+          <div fxLayout="row" *ngIf="!this.hideAgentbar" class="row-params" fxLayoutAlign="space-between center"
+            fxLayoutGap="gappx">
+
+
+            <mat-form-field fxFlex="15" *ngIf="this.behavior.id_modes==0" class="agent-parameters" appearance="outline">
+              <mat-label>Param1</mat-label>
+              <input matInput placeholder="Param1" readonly="true" type="number">
+            </mat-form-field>
+            <mat-form-field fxFlex="15" *ngIf="this.behavior.id_modes==0" class="agent-parameters" appearance="outline">
+              <mat-label>Param2</mat-label>
+              <input matInput placeholder="Param2" readonly="true" type="number">
+            </mat-form-field>
+            <mat-form-field fxFlex="15" *ngIf="this.behavior.id_modes==0" class="agent-parameters" appearance="outline">
+              <mat-label>Param3</mat-label>
+              <input matInput placeholder="Param3" readonly="true" type="number">
+            </mat-form-field>
+
+
+            <mat-form-field fxFlex="15" *ngIf="behavior.id_modes==1||behavior.id_modes==2||behavior.id_modes==3"
+              class="agent-parameters" appearance="outline">
+              <mat-label>Kc:</mat-label>
+              <input matInput placeholder="Kc" [(ngModel)]="agentParameters[0]" type="number">
+            </mat-form-field>
+            <mat-form-field fxFlex="15" *ngIf="behavior.id_modes==1||behavior.id_modes==2||behavior.id_modes==3"
+              class="agent-parameters" appearance="outline">
+              <mat-label>Ki:</mat-label>
+              <input matInput placeholder="Ki" [(ngModel)]="agentParameters[1]" type="number">
+            </mat-form-field>
+            <mat-form-field fxFlex="15" *ngIf="behavior.id_modes==1||behavior.id_modes==2||behavior.id_modes==3"
+              class="agent-parameters" appearance="outline">
+              <mat-label>Kd:</mat-label>
+              <input matInput placeholder="Kd" [(ngModel)]="agentParameters[2]" type="number">
+            </mat-form-field>
+
+
+            <mat-form-field fxFlex="15" *ngIf="behavior.id_modes==4" class="agent-parameters" appearance="outline">
+              <mat-label>&alpha;:</mat-label>
+              <input matInput placeholder="&alpha;" [(ngModel)]="agentParameters[0]" type="number">
+            </mat-form-field>
+            <mat-form-field fxFlex="15" *ngIf="behavior.id_modes==4" class="agent-parameters" appearance="outline">
+              <mat-label>&gamma;:</mat-label>
+              <input matInput placeholder="&gamma;" [(ngModel)]="agentParameters[1]" type="number">
+            </mat-form-field>
+            <mat-form-field fxFlex="15" *ngIf="behavior.id_modes==4" class="agent-parameters" appearance="outline">
+              <mat-label>&epsilon;:</mat-label>
+              <input matInput placeholder="&epsilon;" [(ngModel)]="agentParameters[2]" type="number">
+            </mat-form-field>
+
+            <mat-form-field fxFlex="25" appearance="outline">
+              <mat-label>Select-Agent</mat-label>
+              <mat-select placeholder="Select-Agent" [(value)]="behavior.id_modes"
+                (selectionChange)=onAgentChange($event)>
+                <mat-option [value]="0">Manual</mat-option>
+                <mat-option [value]="1">Pid-theta</mat-option>
+                <mat-option [value]="2">Pid-cascade</mat-option>
+                <mat-option [value]="3">Go-to-point</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <button mat-raised-button fxFlex="10" (click)="onChangeConstants()" color="primary">ENVIAR</button>
+
+          </div>
+          <div fxLayout="row" class="CanvasRow" style="width:100%; margin-top: 10px;" fxLayoutAlign="center center"
+            fxLayoutGap="gappx">
+            <app-canvas [state]="state" [sim_params]="sim_params" [geo_params]="geo_params"
+              [cv_height]="this.canvasSizeService.canvasHeigth" [cv_width]="this.canvasSizeService.canvasWidth">
+            </app-canvas>
+          </div>
+        </div>
+        <div fxLayout="column" style="width: 25%; padding-left:10px; padding-right:10px;" fxLayoutAlign="start start"
+          fxLayoutGap="gappx">
+          <mat-toolbar color="primary" class="mat-elevation-z4" fxLayoutAlign="center center" style="width:100%;">
+            Referencias
+          </mat-toolbar>
+          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+            <div class="mat-elevation-z4">
+              <app-setpoint (changeSetpoint)="getSet_point($event)"></app-setpoint>
+            </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+            <div class="State mat-elevation-z8">
+
+              <div class="responsive_table">
+                <table mat-table
+                  [dataSource]="[{'name':'theta','value':show_state.theta.toFixed(2)},{'name':'omega','value':show_state.theta_dot.toFixed(2)},
+                {'name':'pos[x]','value':show_state.x.toFixed(2)},{'name':'vel[v]','value':show_state.x_dot.toFixed(2)}]"
+                  matSortDisableClear class="mat-elevation-z8">
+
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="name">
+                    <th style="width: 50%;" mat-header-cell *matHeaderCellDef>
+                      Nombre
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      <span class="mat-body-2">{{element ? element.name : ''}}</span>
+                    </td>
+                  </ng-container>
+
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="value">
+                    <th style="width: 50%;" mat-header-cell *matHeaderCellDef>
+                      Valor
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                      <span class="mat-body-1"> {{element.value}}</span>
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedStateColumns" class="headerState"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedStateColumns;" class="rowTable"></tr>
+                </table>
+              </div>
+
+              <mat-progress-bar [value]="50+(behavior.getForce()/20)*100" style="height:25px;width:248px;">
+              </mat-progress-bar>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
