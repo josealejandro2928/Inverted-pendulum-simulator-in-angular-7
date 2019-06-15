@@ -1,5 +1,5 @@
 .params-form {
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 .sim-item {
@@ -10,16 +10,16 @@
 }
 
 .sendBtn {
-  background-color: rgba(105, 213, 221, 0.30);
-  margin-top: 25px;
+  /* background-color: rgba(105, 213, 221, 0.30); */
+  margin-top: 15%;
   border-radius: 10px;
-  margin-left: 38px;
+  margin-left: 22px;
   height: 40px;
 }
 
 .defaultBtn {
-  background-color: rgba(105, 213, 221, 0.30);
-  margin-top: 25px;
+  /* background-color: rgba(105, 213, 221, 0.30); */
+  margin-top: 15%;
   margin-left: 10px;
   border-radius: 10px;
   height: 40px;

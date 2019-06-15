@@ -4,6 +4,7 @@
     <mat-toolbar color="primary">
       <span class="mat-body-2" style="font-size:20px;margin-left:5%">Parámetros sistema</span>
     </mat-toolbar>
+    <br>
     <app-sim-prams-component (changeparams)="getSimp_params($event)">
     </app-sim-prams-component>
     <mat-slide-toggle class="startBtn" (click)="onstartBtn()"></mat-slide-toggle>
@@ -12,15 +13,6 @@
       <mat-icon *ngIf="!this.hideAgentbar">lock_open</mat-icon>
       <mat-icon *ngIf="this.hideAgentbar">lock</mat-icon>
     </button>
-
-
-    <br>
-    <div *ngIf="behavior.connected;else try">
-      <label style="color:#3F51B5;margin-left: 35px;;margin-top: 10px;">API is connected</label>
-    </div>
-    <ng-template #try>
-      <label style="margin-left: 35px;margin-top: 10px;">API is not connected</label>
-    </ng-template>
   </mat-sidenav>
   <mat-sidenav-content>
 
@@ -93,8 +85,8 @@
               <mat-select placeholder="Select-Agent" [(value)]="behavior.id_modes"
                 (selectionChange)=onAgentChange($event)>
                 <mat-option [value]="0">Manual</mat-option>
-                <mat-option [value]="1">Pid-theta</mat-option>
-                <mat-option [value]="2">Pid-cascade</mat-option>
+                <mat-option [value]="1">PID-inclinación</mat-option>
+                <mat-option [value]="2">PID-cascada</mat-option>
                 <mat-option [value]="3">Go-to-point</mat-option>
               </mat-select>
             </mat-form-field>
