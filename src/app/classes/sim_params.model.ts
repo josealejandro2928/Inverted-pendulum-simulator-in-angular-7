@@ -21,7 +21,7 @@ export class Sim_params {
     ground_friction: number = 3.5,
     time_up: number = 0.0,
     best_score: number = 0.0,
-    wind_friction: number = 5.5,
+    wind_friction: number = 10.5,
     max_force: number = 20.0,
     init_theta: number = 0.0,
     wheel_rad: number = 0.055

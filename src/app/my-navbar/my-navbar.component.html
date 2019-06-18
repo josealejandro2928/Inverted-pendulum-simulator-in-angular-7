@@ -81,8 +81,8 @@
             </mat-form-field>
 
             <mat-form-field fxFlex="25" appearance="outline">
-              <mat-label>Select-Agent</mat-label>
-              <mat-select placeholder="Select-Agent" [(value)]="behavior.id_modes"
+              <mat-label>Selección del controlador</mat-label>
+              <mat-select placeholder="Selección del controlador" [(value)]="behavior.id_modes"
                 (selectionChange)=onAgentChange($event)>
                 <mat-option [value]="0">Manual</mat-option>
                 <mat-option [value]="1">PID-inclinación</mat-option>

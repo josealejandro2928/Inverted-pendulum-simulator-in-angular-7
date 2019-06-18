@@ -19,7 +19,7 @@ export class SetpointComponent implements OnInit {
     set_x_dot: HTMLInputElement
   ): boolean {
     if (!isNaN(set_angle.valueAsNumber)) {
-      this.set_point.theta = set_angle.valueAsNumber;
+      this.set_point.theta = -1.0 * set_angle.valueAsNumber;
     }
     if (!isNaN(set_x.valueAsNumber)) {
       this.set_point.x = set_x.valueAsNumber;

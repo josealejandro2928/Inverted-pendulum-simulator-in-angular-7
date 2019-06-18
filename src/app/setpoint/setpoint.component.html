@@ -1,13 +1,13 @@
 <div class="Setpoints">
   <div style="margin-left:40px;">
     <mat-form-field class="set-point">
-      <input matInput placeholder="theta: [&theta;]" name="set_angle" type="number" #set_angle>
+      <input matInput placeholder="inclinación: [&theta;]" name="set_angle" type="number" #set_angle>
     </mat-form-field>
     <mat-form-field class="set-point">
-      <input matInput placeholder="position: [m]" name="set_x" type="number" #set_x>
+      <input matInput placeholder="velocidad: [m/s]" name="set_x_dot" type="number" #set_x_dot>
     </mat-form-field>
     <mat-form-field class="set-point">
-      <input matInput placeholder="velocity: [m/s]" name="set_x_dot" type="number" #set_x_dot>
+      <input matInput placeholder="posición: [m]" name="set_x" type="number" #set_x>
     </mat-form-field>
   </div>
   <button mat-button (click)="sendSetpoint(set_angle,set_x,set_x_dot)" color="primary"
